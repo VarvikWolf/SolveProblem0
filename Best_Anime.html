@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="libs/bootstrap-reboot.min.css">
+
+	<!-- Bootstrap сетка -->
+	<link rel="stylesheet" href="libs/bootstrap-grid.min.css">
+	<!-- Стили сайта -->
+	<link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+ <nav class="navbar">
+  <div class="container">
+<a href="#" class="navbar-brand" onclick="showHeader()">   SobolewStyle</a>
+<div class="navbar-wrap">
+  <ul class="navbar-menu">
+    <li><a href="index.html">   Task1</a></li>
+    <li><a href="Photo.html">   Photo</a></li>
+    <li><a href="Sort.html">Sort</a></li>
+    <li><a href="My_playlist.html">My playlist</a></li>
+    <li class="active"><a  href="Best_Anime.html">MMM</a></li>
+  </ul>
+</div>
+<a href="https://vk.com/id187333757" class="callback">Связь со мной</a>
+  </div>
+ </nav>
+<div class="first1" 
+ >
+
+</div>
+
+<div style="width: 400 px; height: 400px; position: absolute;
+top: 400px; left: 100px;">
+Сам код:</br>
+<p id="temp-text"></p>
+import numpy as np </br>
+
+a = 1 </br>
+c = 1 </br>
+b = 10</br>
+p = 1</br>
+n = 99</br>
+cont = 1;</br>
+X = [0]*(n+1)</br>
+A = np.zeros((n+1, n+2)) </br>
+A[0][0] = b </br>
+A[0][1] = c</br>
+C = []</br>
+A[0][-1] = a</br>
+A[n][-1] = n+1</br>
+
+
+
+for i in range(1,n):</br>
+    A[i][-1] = i+1</br>
+    j = i-1</br>
+    A[i][j] = a</br>
+    j+=1</br>
+    A[i][j] = b</br>
+    j+=1</br>
+    A[i][j] = c</br>
+cot = 1;</br>
+for i in range(0, n+1):</br>
+    A[-1][i] = 1</br>
+print("Наша матричка: ")</br>
+print(" ")</br>
+print(A)</br>
+print("  ")</br>
+
+
+for i in range(1, n):</br>
+    cot = A[i][i-1]</br>
+    for j in range (i-1, n+2):</br>
+        A[i][j] -= A[i-1][j]/A[i-1][i-1]*cot</br>
+
+
+for i in range(0, n):</br>
+    cot2 = A[-1][i]</br>
+    for j in range(i, n+2):</br>
+        A[-1][j] -= A[i][j]/A[i][i]*cot2</br>
+        
+for i in range(n-1, -1, -1):</br>
+    cot3 = A[i][i+1]</br>
+    for j in range(n+1, -1, -1):</br>
+        A[i][j] -=A[i+1][j]/A[i+1][i+1]*cot3</br>
+for i in range(0, n+1):</br>
+    C.append(A[i][-1]/A[i][i])</br>
+    
+print("Решение методом Гаусса: ")</br>
+print(" ")</br>
+print(C)</br>
+print(" ")</br>
+
+print(" ")</br>
+A = np.zeros((n+1, n+2))</br>
+A[0][0] = b</br>
+A[0][1] = c</br>
+A[0][-1] = a</br>
+A[n][-1] = n+1</br>
+e = 0.01</br>
+XE = [0]*(n+1)</br>
+E = [99]*(n+1)</br>
+
+
+for i in range(1,n):</br>
+    A[i][-1] = i+1</br>
+    j = i-1</br>
+    A[i][j] = a</br>
+    j+=1</br>
+    A[i][j] = b</br>
+    j+=1 </br>
+    A[i][j] = c</br>
+cot = 1;</br>
+for i in range(0, n+1): </br>
+    A[-1][i] = 1</br>
+print("  ")</br>
+while (abs(max(E)) > e):</br>
+    for i in range(0, n+1):</br>
+        x = A[i][-1]</br>
+        XE[i] = X[i]</br>
+        for j in range(0, n+1):</br>
+            if (i != j):</br>
+                x-= A[i][j]*X[j]</br>
+        x /= A[i][i]</br>
+        X[i] = x</br>
+        E[i] = X[i]-XE[i]</br>
+print("Решение методом Якоби: ")</br>
+print(" ")</br>
+print(X)</br>
+print(" ")</br>
+ALN = []</br>
+BL = np.zeros((n+1, 1))</br>
+
+m2 = 0;</br>
+AL = np.zeros((n+1, n+1))</br>
+for i in range(0, n+1):</br>
+    for j in range(0, n+1):</br>
+        AL[i][j] = A[i][j]</br>
+for i in range(0, n+1):</br>
+    BL[i][0] = i   +1   </br>
+
+solve = np.linalg.solve(AL, BL)</br>
+ALN = np.linalg.inv(AL)</br>
+m2 = np.linalg.norm(A)*np.linalg.norm(ALN)</br>
+print("Число обусл.: ", m2)</br>
+print(" ")</br>
+print("Невязка для решения Якоби  по сравнению с оригинальным питоновским решением:  ")</br>
+print(" ")</br>
+for i in range(0, n+1):</br>
+    print(solve[i] - X[i])</br>
+print(" ")</br>
+print("Невязка для решения Методом Гаусса по сравнению с оригинальным питоновским решением: ")</br>
+print(" ")</br>
+for i in range(0, n+1):</br>
+    print(solve[i] - C[i])</br>
+la = -10</br>
+print(" ")</br>
+ED = np.zeros((n+1, n+1))</br>
+for i in range(0, n+1):</br>
+    ED[i][i] = 1</br>
+    
+OP = []  </br>
+while la < 20: </br>
+  
+    if ((np.linalg.det((AL - la*ED)) < 0.3) and np.linalg.det((AL - la*ED)) >= 0):</br>
+        OP.append(la)</br>
+        print("good:     --------",la)</br>
+        
+    la+=0.001</br>
+
+print("MAX: ",max(OP))</br>
+print("MIN: ",min(OP))</br>
+
+</div>
+</body>
+
+</html>
+<script>
+  function showHeader() {
+    
+    while (window.pageYOffset > 10) 
+    {
+      pageYOffset -=1;
+    }
+  }
+
+</script>

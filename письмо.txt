@@ -1,0 +1,51 @@
+ let g = 'enter:', u ;
+    let j="";
+    let k = 0;
+    let letter1 , listing;
+    function zip() {
+      document.querySelector('.out').innerHTML =listing;
+    }
+  function bt()
+  {
+  u = "bh"
+    let a = document.querySelector('.txt').value;
+    j=  document.querySelector('.out').innerHTML += a + '\n' +"\r\n" ;
+    localStorage.setItem('text', j.toString())
+ 
+   g = localStorage.getItem('text')
+  
+
+  }
+
+  g = localStorage.getItem('text')
+  if(u = "bh"){
+    document.querySelector('.out').innerHTML = g + '\n' ;
+  }
+   function clear1()
+   {
+    j=" ";
+    g= " "
+    document.querySelector('.out').innerHTML = "Enter:  "
+    localStorage.removeItem('text')
+    localStorage.setItem('text', "Enter:")
+
+   
+   }
+
+  function showHeader() {
+    
+    while (window.pageYOffset > 10) 
+    {
+      pageYOffset -=1;
+    }
+  }
+  function save()
+  {
+letter1 = g;
+localStorage.setItem('letter', letter1.toString())
+
+  }
+
+  listing = localStorage.getItem('letter');
+  console.log(listing)
+
